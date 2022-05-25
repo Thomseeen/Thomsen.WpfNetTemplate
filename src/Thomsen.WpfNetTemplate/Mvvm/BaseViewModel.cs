@@ -44,8 +44,29 @@ namespace Thomsen.WpfTools.Mvvm {
             _view.Show();
         }
 
+        public bool? ShowDialog() {
+            if (_view is null) {
+                _view = new T {
+                    DataContext = this
+                };
+
+                _view.Closed += (s, e) => {
+                    _view = null;
+                };
+            }
+
+            return _view.ShowDialog();
+        }
+
         public void Close() {
             if (_view is not null) {
+                _view.Close();
+            }
+        }
+
+        public void ExitDialog(bool? result) {
+            if (_view is not null) {
+                _view.DialogResult = result;
                 _view.Close();
             }
         }
