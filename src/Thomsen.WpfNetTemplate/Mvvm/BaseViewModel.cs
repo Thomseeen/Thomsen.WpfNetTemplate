@@ -19,7 +19,8 @@ namespace Thomsen.WpfTools.Mvvm {
         #endregion Public Properties
 
         #region Constructors
-        public BaseViewModel() { }
+        public BaseViewModel() {
+        }
         #endregion Constructors
 
         #region Public Methods
