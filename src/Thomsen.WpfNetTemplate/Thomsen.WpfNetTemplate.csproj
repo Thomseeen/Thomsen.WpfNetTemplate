@@ -1,0 +1,15 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net6.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWPF>true</UseWPF>
+    <BaseOutputPath>..\..\bin\</BaseOutputPath>
+    <Authors>Thomas Wagner</Authors>
+    <Copyright>Copyright © 2022</Copyright>
+    <PackageProjectUrl>https://github.com/Thomseeen/Thomsen.WpfNetTemplate</PackageProjectUrl>
+    <EnforceCodeStyleInBuild>True</EnforceCodeStyleInBuild>
+  </PropertyGroup>
+
+</Project>
