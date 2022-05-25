@@ -7,11 +7,11 @@ namespace Thomsen.WpfTools.Util {
             StringBuilder sb = new();
 
             sb.AppendLine($"{ex.Message}");
-            ex = ex.InnerException;
+            Exception? innerEx = ex.InnerException;
 
-            for (int ii = 0; ex is not null; ii++) {
-                sb.AppendLine($"{new string('-', ii + 1)}> {ex.Message}");
-                ex = ex.InnerException;
+            for (int ii = 0; innerEx is not null; ii++) {
+                sb.AppendLine($"{new string('-', ii + 1)}> {innerEx.Message}");
+                innerEx = innerEx.InnerException;
             }
 
             return sb.ToString();
