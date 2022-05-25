@@ -5,7 +5,7 @@ using System.Runtime.CompilerServices;
 using System.Windows;
 
 namespace Thomsen.WpfTools.Mvvm {
-    public class BaseViewModel<T> : INotifyPropertyChanged, IDisposable where T : Window, new() {
+    public abstract class BaseViewModel<T> : INotifyPropertyChanged, IDisposable where T : Window, new() {
         #region Private Fields
         private bool _disposed;
 
@@ -41,6 +41,8 @@ namespace Thomsen.WpfTools.Mvvm {
                 };
             }
 
+            _view.Loaded += View_Loaded;
+
             _view.Show();
         }
 
@@ -55,22 +57,33 @@ namespace Thomsen.WpfTools.Mvvm {
                 };
             }
 
+            _view.Loaded += View_Loaded;
+
             return _view.ShowDialog();
         }
 
         public void Close() {
             if (_view is not null) {
+                _view.Loaded -= View_Loaded;
+
                 _view.Close();
             }
         }
 
         public void ExitDialog(bool? result) {
             if (_view is not null) {
+                _view.Loaded -= View_Loaded;
+
                 _view.DialogResult = result;
                 _view.Close();
             }
         }
         #endregion Public Methods
+
+        #region Protected Methods
+        protected virtual void View_Loaded(object sender, RoutedEventArgs e) {
+        }
+        #endregion Protected Methods
 
         #region INotifyPropertyChanged
         public event PropertyChangedEventHandler? PropertyChanged;
